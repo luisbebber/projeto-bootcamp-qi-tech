@@ -1,0 +1,16 @@
+{
+  "title": "PatchFeeConfiguration",
+  "type": "object",
+  "properties": {
+    "transfer_amount": {
+      "type": "string",
+      "pattern": "^0*[0-9]{1,13}(\\.[0-9]{1,2})?$"
+    },
+    "account_opening_amount": {
+      "type": "string",
+      "pattern": "^0*[0-9]{1,13}(\\.[0-9]{1,2})?$"
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false
+}

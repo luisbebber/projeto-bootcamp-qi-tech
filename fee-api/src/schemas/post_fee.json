@@ -1,0 +1,19 @@
+{
+  "title": "PostFee",
+  "type": "object",
+  "properties": {
+    "fee_type": {
+      "type": "string",
+      "enum": ["transfer", "account_opening"]
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    }
+  },
+  "required": [
+    "fee_type",
+    "idempotency_key"
+  ],
+  "additionalProperties": false
+}

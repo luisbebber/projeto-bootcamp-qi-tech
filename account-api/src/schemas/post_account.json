@@ -1,0 +1,25 @@
+{
+  "title": "PostAccount",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "document_number": {
+      "type": "string",
+      "pattern": "^[0-9]{11}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    }
+  },
+  "required": [
+    "name",
+    "document_number",
+    "idempotency_key"
+  ],
+  "additionalProperties": false
+}

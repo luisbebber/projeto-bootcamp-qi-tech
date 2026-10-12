@@ -1,0 +1,7 @@
+from resources.health_check import HealthCheckResource
+from resources.client_configuration import ClientConfigurationResource
+from resources.account import AccountResource
+from resources.deposit import DepositResource
+from resources.withdrawal import WithdrawalResource
+from resources.transfer import TransferResource
+from resources.statement import StatementResource

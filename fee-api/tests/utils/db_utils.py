@@ -1,0 +1,62 @@
+from os import environ
+from pathlib import Path
+
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import OperationalError
+
+
+RESET_QUERIES = [
+    "DROP SCHEMA public CASCADE;",
+    "CREATE SCHEMA public;",
+    "GRANT ALL ON SCHEMA public TO CURRENT_USER;",
+    "GRANT ALL ON SCHEMA public TO public;",
+]
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+SCHEMA_FILE = PROJECT_ROOT / "database" / "database.sql"
+
+DEFAULT_DATABASE_URL = "postgresql+psycopg2://bootcamp:bootcamp@localhost:5432/bootcamp"
+
+DATABASE_OFFLINE = (
+    "Não consegui falar com o banco em {host}:{port}.\n"
+    "Ele precisa estar de pé pros testes rodarem. Suba com:  docker compose up\n"
+    "Se ele já está de pé, confira a porta na DATABASE_URL do seu .env."
+)
+
+
+class DbUtils:
+
+    @staticmethod
+    def database_url() -> str:
+        return environ.get("DATABASE_URL", DEFAULT_DATABASE_URL)
+
+    @staticmethod
+    def rollback() -> None:
+        engine = create_engine(DbUtils.database_url(), isolation_level="AUTOCOMMIT")
+
+        try:
+            with engine.connect() as connection:
+                for query in RESET_QUERIES:
+                    connection.exec_driver_sql(query)
+
+                connection.exec_driver_sql(SCHEMA_FILE.read_text())
+        except OperationalError:
+            message = DATABASE_OFFLINE.format(host=engine.url.host, port=engine.url.port)
+            raise RuntimeError(message) from None
+        finally:
+            engine.dispose()
+
+    @staticmethod
+    def move_client_dates_back(client_key: str, months: int) -> None:
+        engine = create_engine(DbUtils.database_url(), isolation_level="AUTOCOMMIT")
+
+        try:
+            with engine.connect() as connection:
+                tables = ["client_configuration", "fee"]
+                for table in tables:
+                    connection.execute(
+                        text(f"UPDATE {table} SET created_at = created_at - make_interval(months => :months) WHERE client_key = :client_key"),
+                        {"months": months, "client_key": client_key},
+                    )
+        finally:
+            engine.dispose()

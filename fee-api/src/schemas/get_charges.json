@@ -1,0 +1,22 @@
+{
+  "title": "GetCharges",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_payment",
+        "paid"
+      ]
+    },
+    "limit": {
+      "type": "string",
+      "pattern": "^(100|[1-9][0-9]?)$"
+    },
+    "page": {
+      "type": "string",
+      "pattern": "^[0-9]{1,9}$"
+    }
+  },
+  "additionalProperties": false
+}

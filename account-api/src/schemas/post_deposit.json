@@ -1,0 +1,19 @@
+{
+  "title": "PostDeposit",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "string",
+      "pattern": "^0*[0-9]{1,13}(\\.[0-9]{1,2})?$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    }
+  },
+  "required": [
+    "amount",
+    "idempotency_key"
+  ],
+  "additionalProperties": false
+}

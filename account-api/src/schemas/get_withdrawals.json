@@ -1,0 +1,24 @@
+{
+  "title": "GetWithdrawals",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_confirmation",
+        "pending_fee",
+        "completed",
+        "reversed"
+      ]
+    },
+    "limit": {
+      "type": "string",
+      "pattern": "^(100|[1-9][0-9]?)$"
+    },
+    "page": {
+      "type": "string",
+      "pattern": "^[0-9]{1,9}$"
+    }
+  },
+  "additionalProperties": false
+}

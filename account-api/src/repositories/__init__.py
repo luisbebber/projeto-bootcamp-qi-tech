@@ -1,0 +1,6 @@
+from repositories.client_configuration_repository import ClientConfigurationRepository
+from repositories.account_repository import AccountRepository
+from repositories.transfer_repository import TransferRepository
+from repositories.deposit_repository import DepositRepository
+from repositories.entry_repository import EntryRepository
+from repositories.withdrawal_repository import WithdrawalRepository

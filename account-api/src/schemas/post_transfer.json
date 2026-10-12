@@ -1,0 +1,29 @@
+{
+  "title": "PostTransfer",
+  "type": "object",
+  "properties": {
+    "origin_account_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "destination_account_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "amount": {
+      "type": "string",
+      "pattern": "^0*[0-9]{1,13}(\\.[0-9]{1,2})?$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    }
+  },
+  "required": [
+    "origin_account_key",
+    "destination_account_key",
+    "amount",
+    "idempotency_key"
+  ],
+  "additionalProperties": false
+}

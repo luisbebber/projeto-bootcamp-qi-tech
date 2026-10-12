@@ -1,0 +1,6 @@
+from controllers.client_configuration_controller import ClientConfigurationController
+from controllers.account_controller import AccountController
+from controllers.deposit_controller import DepositController
+from controllers.withdrawal_controller import WithdrawalController
+from controllers.transfer_controller import TransferController
+from controllers.statement_controller import StatementController

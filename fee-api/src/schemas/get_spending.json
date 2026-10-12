@@ -1,0 +1,19 @@
+{
+  "title": "GetSpending",
+  "type": "object",
+  "properties": {
+    "_from": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "_to": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+  },
+  "required": [
+    "_from",
+    "_to"
+  ],
+  "additionalProperties": false
+}
